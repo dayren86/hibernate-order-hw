@@ -4,7 +4,7 @@ import java.util.List;
 import mate.academy.dao.OrderDao;
 import mate.academy.exception.DataProcessingException;
 import mate.academy.lib.Dao;
-import mate.academy.model.Orders;
+import mate.academy.model.Order;
 import mate.academy.model.User;
 import mate.academy.util.HibernateUtil;
 import org.hibernate.Session;
@@ -14,7 +14,7 @@ import org.hibernate.query.Query;
 @Dao
 public class OrderDaoImpl implements OrderDao {
     @Override
-    public Orders add(Orders orders) {
+    public Order add(Order orders) {
         Session session = null;
         Transaction transaction = null;
         try {
@@ -36,14 +36,14 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<Orders> getByUser(User user) {
+    public List<Order> getByUser(User user) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query<Orders> query = session.createQuery("FROM Orders sc "
+            Query<Order> query = session.createQuery("FROM Orders sc "
                     + "LEFT JOIN FETCH sc.tickets t "
                     + "LEFT JOIN FETCH t.movieSession ms "
                     + "LEFT JOIN FETCH ms.movie "
                     + "LEFT JOIN FETCH ms.cinemaHall "
-                    + "WHERE sc.user =:user", Orders.class);
+                    + "WHERE sc.user =:user", Order.class);
             query.setParameter("user", user);
             return query.getResultList();
         } catch (Exception e) {

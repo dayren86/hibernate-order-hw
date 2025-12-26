@@ -1,11 +1,11 @@
 package mate.academy.dao;
 
 import java.util.List;
-import mate.academy.model.Orders;
+import mate.academy.model.Order;
 import mate.academy.model.User;
 
 public interface OrderDao {
-    Orders add(Orders orders);
+    Order add(Order orders);
 
-    List<Orders> getByUser(User user);
+    List<Order> getByUser(User user);
 }
