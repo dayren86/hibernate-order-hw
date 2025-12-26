@@ -61,7 +61,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Orders{id=" + id
+        return "Order{id=" + id
                 + ", tickets=" + tickets
                 + ", orderDate=" + orderDate
                 + ", user=" + user + '}';
